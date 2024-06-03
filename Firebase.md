@@ -1,0 +1,65 @@
+# Connect your React app to Firebase
+
+## 1. Copy your Firebase configuration to React
+
+Go to your project settings
+
+![image](https://github.com/vgs-7/React-Firebase-Guide/assets/93202304/5f647cfa-b9e2-4a95-ae8a-f04a4ac032e4)
+
+Scroll down and copy your app configuration
+
+![image](https://github.com/vgs-7/React-Firebase-Guide/assets/93202304/a18a5992-f8d4-42d5-8065-192bcd242c8a)
+
+Add a new `firebase.js` file to your project. Pass your config to the initializeApp function.
+
+```
+// Imports
+import { initializeApp } from "firebase/app"
+
+// App configuration
+const app = initializeApp({
+    apiKey: "xxx",
+    authDomain: "xxx",
+    projectId: "xxx",
+    storageBucket: "xxx",
+    messagingSenderId: "xxx",
+    appId: "xxx"
+})
+```
+> [!NOTE]
+> This is used for your app to connect to Firebase.
+>
+> When you use Firebase features, you need to initialize them here.
+
+---
+## 2. Firebase Authentication
+
+Enable Authentication for your Firebase project. 
+
+![image](https://github.com/vgs-7/React-Firebase-Guide/assets/93202304/45e600c2-ed99-455e-8607-add4d5f0a4f5)
+
+Click on `Get started`, and add a new Provider. Ex.: E-mail
+
+![image](https://github.com/vgs-7/React-Firebase-Guide/assets/93202304/a5fbec8b-91e8-4211-bad7-117a8d33e6d2)
+
+Add authentication to your `firebase.js` file
+```
+// Imports
+import { initializeApp } from "firebase/app"
+import { getAuth } from "firebase/auth"                    // Import the getAuth() function
+
+// App configuration
+const app = initializeApp({
+    // Your firebase config goes here
+})
+
+// Firebase services
+export const auth = getAuth(app)                            // Create and export an auth instance
+```
+
+Use the following functions from `firebase/auth` to handle email authentication
+- `createUserWithEmailAndPassword`
+- `signInWithEmailAndPassword`
+- `signOut`
+
+### \> See Examples/Authentication/authentication.js for examples with error handling
